@@ -1,0 +1,106 @@
+<div class="container mt-5">
+  <div
+    class="card mb-4 border-0 shadow-lg"
+    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+  >
+    <div class="card-body text-center text-white py-4">
+      <h2 class="card-title fw-bold mb-2">{{ nombre }}</h2>
+      <h3 class="card-subtitle mb-3 opacity-75">{{ titulo }}</h3>
+      <button class="btn btn-light btn-lg px-4" (click)="cambiarTitulo()">
+        <i class="bi bi-pencil-square me-2"></i>Cambiar Título
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="card mb-4 border-0 shadow">
+    <div class="card-body" style="background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)">
+      <p class="card-text fs-5" [style.color]="colorTexto">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam consequuntur, vel enim
+        tempora in placeat? Blanditiis natus ipsum rem itaque non voluptas quis laboriosam
+        reiciendis. Porro fugiat nemo blanditiis laudantium sapiente, placeat dolorem architecto
+        cumque voluptate expedita tempora veritatis dolore repudiandae sunt consequuntur autem!
+        Eligendi odit omnis unde quis asperiores?
+      </p>
+      <button class="btn btn-warning btn-lg mt-3 px-4" (click)="alternarColor()">
+        <i class="bi bi-palette me-2"></i>Cambiar Color
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="card mb-4 border-0 shadow">
+    <div
+      class="card-body text-center"
+      style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)"
+    >
+      <h2 class="card-title mb-4 text-dark">Control de Bombilla</h2>
+      <div class="mb-4">
+        <div class="bombilla-container" [class.encendida]="luzEncendida">
+          <i
+            class="bi bi-lightbulb"
+            [class.text-warning]="!luzEncendida"
+            [class.text-warning]="luzEncendida"
+            style="font-size: 4rem"
+          ></i>
+          
+        </div>
+      </div>
+      <button
+        class="btn btn-lg px-5"
+        [class.btn-success]="!luzEncendida"
+        [class.btn-danger]="luzEncendida"
+        (click)="alternarLuz()"
+      >
+        <i
+          class="bi me-2"
+          [class.bi-power]="!luzEncendida"
+          [class.bi-lightbulb-off]="luzEncendida"
+        ></i>
+        {{ luzEncendida ? 'Apagar Bombilla' : 'Encender Bombilla' }}
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="card border-0 shadow-lg">
+    <div class="card-body" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)">
+      <h2 class="card-title text-center mb-4 text-dark fw-bold">Barra de Progreso</h2>
+
+      
+      <div class="mx-auto mb-4" style="width: 70%">
+        
+        <div class="progress-bar-container bg-light rounded-pill shadow-sm p-2">
+          <div class="progress-track rounded-pill" style="height: 30px; background: #e9ecef">
+            <div
+              class="progress-fill rounded-pill h-100 d-flex align-items-center justify-content-end"
+              [style.width.%]="progreso"
+              [style.background]="getProgressColor()"
+            >
+              <span class="progress-text fw-bold text-white me-3">{{ progreso }}%</span>
+            </div>
+          </div>
+        </div>
+
+        
+        
+
+      
+      <div class="text-center mt-4">
+        <button class="btn btn-success btn-lg me-3 px-4" (click)="aumentarProgreso()">
+          <i class="bi bi-plus-circle me-2"></i>Aumentar +10%
+        </button>
+        <button class="btn btn-danger btn-lg px-4" (click)="disminuirProgreso()">
+          <i class="bi bi-dash-circle me-2"></i>Disminuir -10%
+        </button>
+      </div>
+
+      
+      <div class="text-center mt-3">
+        <div class="badge bg-dark fs-6 p-3">
+          Progreso actual: <span class="fw-bold text-warning">{{ progreso }}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

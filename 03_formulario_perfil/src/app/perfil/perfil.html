@@ -1,0 +1,42 @@
+<div class="perfil">
+  <h2>Mi Perfil</h2>
+  
+  <div class="formulario">
+    <div class="campo">
+      <label>Nombre:</label>
+      <input type="text" (input)="cambiarNombre($event)">
+      <small>Caracteres: {{ nombre.length }}</small>
+    </div>
+
+    <div class="campo">
+      <label>Apellidos:</label>
+      <input type="text" (input)="cambiarApellidos($event)">
+      <small>Caracteres: {{ apellidos.length }}</small>
+    </div>
+
+    <div class="campo">
+      <label>Email:</label>
+      <input type="email" (input)="cambiarEmail($event)">
+    </div>
+
+    <div class="campo">
+      <label>Edad:</label>
+      <input type="number" (input)="cambiarEdad($event)">
+    </div>
+
+    <div class="botones">
+      <button (click)="guardar()">Guardar</button>
+      <button (click)="resetear()">Resetear</button>
+    </div>
+  </div>
+
+  <div class="datos">
+    <h3>Datos Actualizados:</h3>
+    <p><strong>Nombre:</strong> {{ nombre }}</p>
+    <p><strong>Apellidos:</strong> {{ apellidos }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p [style.color]="edad >= 18 ? 'green' : 'red'">
+      <strong>Edad:</strong> {{ edad }}
+    </p>
+  </div>
+</div>

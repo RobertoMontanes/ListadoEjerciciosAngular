@@ -1,0 +1,36 @@
+
+
+<div class="container">
+  <h1>Star Wars Characters</h1>
+  
+  @if (loading()) {
+    <div class="loading">
+      <p>Cargando personajes...</p>
+    </div>
+  } @else if (error()) {
+    <div class="error">
+      <p>{{ error() }}</p>
+    </div>
+  } @else {
+    <div class="characters-grid">
+      @for (person of people(); track person.url) {
+        <div class="character-card">
+          <h2>{{ person.name }}</h2>
+          <div class="character-info">
+            <p><strong>Altura:</strong> {{ person.height }} cm</p>
+            <p><strong>Peso:</strong> {{ person.mass }} kg</p>
+            <p><strong>Color de pelo:</strong> {{ person.hair_color }}</p>
+            <p><strong>Color de piel:</strong> {{ person.skin_color }}</p>
+            <p><strong>Color de ojos:</strong> {{ person.eye_color }}</p>
+            <p><strong>Año de nacimiento:</strong> {{ person.birth_year }}</p>
+            <p><strong>Género:</strong> {{ person.gender }}</p>
+          </div>
+        </div>
+      } @empty {
+        <div class="no-data">
+          <p>No se encontraron personajes</p>
+        </div>
+      }
+    </div>
+  }
+</div>

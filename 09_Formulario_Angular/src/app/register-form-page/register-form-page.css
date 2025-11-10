@@ -1,0 +1,18 @@
+      .form-signin {
+        max-width: 450px;
+      }
+      .card {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        border: none;
+      }
+      .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+        border-color: #86b7fe;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        border: none;
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+      }

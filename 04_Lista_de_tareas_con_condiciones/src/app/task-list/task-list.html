@@ -1,0 +1,18 @@
+<div class="contenedor">
+  <h2>Mi Lista de Tareas</h2>
+
+  <div class="lista-tareas">
+    @for (tarea of tareas; track tarea.titulo) {
+    <div class="tarea">
+      @if (tarea.completada) {
+      <span class="tarea-completada">✅ {{ tarea.titulo }}</span>
+      } @else {
+      <span class="tarea-pendiente">⭕ {{ tarea.titulo }}</span>
+      }
+      <button (click)="cambiarEstado(tarea)" class="boton">
+        {{ tarea.completada ? 'Pendiente' : 'Hecha' }}
+      </button>
+    </div>
+    }
+  </div>
+</div>
