@@ -20,7 +20,7 @@
           <div class="card">
             <div class="card-body p-4 p-md-5">
               <main class="form-signin w-100 m-auto">
-                <form [formGroup]="loginFormGroup">
+                <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
                   <div class="text-center mb-4">
                     <img
                       class="mb-4"
@@ -37,99 +37,162 @@
                     <input
                       type="text"
                       class="form-control"
+                      [class.is-invalid]="loginFormGroup.get('nombreFormControl')?.invalid && loginFormGroup.get('nombreFormControl')?.touched"
                       id="floatingNombre"
                       placeholder="Roberto"
                       formControlName="nombreFormControl"
                     />
                     <label for="floatingNombre">Nombre</label>
+                    @if (loginFormGroup.get('nombreFormControl')?.touched) {
+                      <div class="invalid-feedback">
+                        {{ getNombreErrors() }}
+                      </div>
+                    }
                   </div>
 
                   <div class="form-floating mb-3">
                     <input
                       type="text"
                       class="form-control"
+                      [class.is-invalid]="loginFormGroup.get('apellidosFormControl')?.invalid && loginFormGroup.get('apellidosFormControl')?.touched"
                       id="floatingApellidos"
                       placeholder="Montañés Ramos"
                       formControlName="apellidosFormControl"
                     />
                     <label for="floatingApellidos">Apellidos</label>
+                    @if (loginFormGroup.get('apellidosFormControl')?.touched) {
+                      <div class="invalid-feedback">
+                        {{ getApellidosErrors() }}
+                      </div>
+                    }
                   </div>
 
                   <div class="form-floating mb-3">
                     <input
                       type="text"
                       class="form-control"
+                      [class.is-invalid]="loginFormGroup.get('nifFormControl')?.invalid && loginFormGroup.get('nifFormControl')?.touched"
                       id="floatingNif"
                       placeholder="6546546987A"
                       formControlName="nifFormControl"
                     />
                     <label for="floatingNif">NIF</label>
+                    @if (loginFormGroup.get('nifFormControl')?.touched) {
+                      <div class="invalid-feedback">
+                        {{ getNifErrors() }}
+                      </div>
+                    }
                   </div>
 
                   <div class="form-floating mb-3">
                     <input
                       type="email"
                       class="form-control"
+                      [class.is-invalid]="loginFormGroup.get('emailFormControl')?.invalid && loginFormGroup.get('emailFormControl')?.touched"
                       id="floatingEmail"
                       placeholder="name@example.com"
                       formControlName="emailFormControl"
                     />
                     <label for="floatingEmail">Email address</label>
+                    @if (loginFormGroup.get('emailFormControl')?.touched) {
+                      <div class="invalid-feedback">
+                        {{ getEmailErrors() }}
+                      </div>
+                    }
                   </div>
 
                   <div class="form-floating mb-3">
                     <input
                       type="tel"
                       class="form-control"
+                      [class.is-invalid]="loginFormGroup.get('telefonoFormControl')?.invalid && loginFormGroup.get('telefonoFormControl')?.touched"
                       id="floatingTelefono"
                       placeholder="637914785"
                       formControlName="telefonoFormControl"
                     />
                     <label for="floatingTelefono">Teléfono</label>
+                    @if (loginFormGroup.get('telefonoFormControl')?.touched) {
+                      <div class="invalid-feedback">
+                        {{ getTelefonoErrors() }}
+                      </div>
+                    }
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input
-                      type="text"
+                    <select
                       class="form-control"
+                      [class.is-invalid]="loginFormGroup.get('sexoFormControl')?.invalid && loginFormGroup.get('sexoFormControl')?.touched"
                       id="floatingSexo"
-                      placeholder="Mujer / Hombre"
                       formControlName="sexoFormControl"
-                    />
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="Hombre">Hombre</option>
+                      <option value="Mujer">Mujer</option>
+                      <option value="Otro">Otro</option>
+                      <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                    </select>
                     <label for="floatingSexo">Sexo</label>
+                    @if (loginFormGroup.get('sexoFormControl')?.touched && loginFormGroup.get('sexoFormControl')?.errors?.['required']) {
+                      <div class="invalid-feedback">
+                        El sexo es obligatorio
+                      </div>
+                    }
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input
-                      type="text"
+                    <select
                       class="form-control"
+                      [class.is-invalid]="loginFormGroup.get('paginaEncontradaFormControl')?.invalid && loginFormGroup.get('paginaEncontradaFormControl')?.touched"
                       id="floatingPaginaEncontrada"
-                      placeholder="Cómo nos conociste"
                       formControlName="paginaEncontradaFormControl"
-                    />
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="Google">Google</option>
+                      <option value="Redes Sociales">Redes Sociales</option>
+                      <option value="Recomendación">Recomendación</option>
+                      <option value="Publicidad">Publicidad</option>
+                      <option value="Otro">Otro</option>
+                    </select>
                     <label for="floatingPaginaEncontrada">¿Cómo nos conociste?</label>
+                    @if (loginFormGroup.get('paginaEncontradaFormControl')?.touched && loginFormGroup.get('paginaEncontradaFormControl')?.errors?.['required']) {
+                      <div class="invalid-feedback">
+                        Este campo es obligatorio
+                      </div>
+                    }
                   </div>
 
                   <div class="form-floating mb-3">
                     <input
                       type="password"
                       class="form-control"
+                      [class.is-invalid]="loginFormGroup.get('passwordFormControl')?.invalid && loginFormGroup.get('passwordFormControl')?.touched"
                       id="floatingPassword"
                       placeholder="Password"
                       formControlName="passwordFormControl"
                     />
                     <label for="floatingPassword">Contraseña</label>
+                    @if (loginFormGroup.get('passwordFormControl')?.touched) {
+                      <div class="invalid-feedback">
+                        {{ getPasswordErrors() }}
+                      </div>
+                    }
                   </div>
 
                   <div class="form-floating mb-3">
                     <input
                       type="password"
                       class="form-control"
+                      [class.is-invalid]="(loginFormGroup.get('confirmPasswordFormControl')?.invalid || loginFormGroup.errors?.['passwordMismatch']) && loginFormGroup.get('confirmPasswordFormControl')?.touched"
                       id="floatingConfirmPassword"
                       placeholder="Password"
                       formControlName="confirmPasswordFormControl"
                     />
                     <label for="floatingConfirmPassword">Repetir Contraseña</label>
+                    @if (loginFormGroup.get('confirmPasswordFormControl')?.touched) {
+                      <div class="invalid-feedback">
+                        {{ getConfirmPasswordErrors() }}
+                      </div>
+                    }
                   </div>
 
                   <div class="row g-2 mb-3">
@@ -145,8 +208,8 @@
                     <div class="col-md-6">
                       <button 
                         class="btn btn-primary w-100 py-2" 
-                        type="button"
-                        (click)="onLoginClicked()"
+                        type="submit"
+                        [disabled]="!loginFormGroup.valid"
                       >
                         <i class="bi bi-person-plus me-2"></i>Registrarse
                       </button>
