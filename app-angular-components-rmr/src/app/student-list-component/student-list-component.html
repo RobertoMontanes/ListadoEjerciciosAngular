@@ -1,42 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <body>
-    <div class="container mt-4">
-      <div class="row mb-3">
-        <div class="col">
-          <h5>Total de alumnos: {{ students.length }}</h5>
-        </div>
-      </div>
+</head>
+<body>
+    
+  
 
-      <div class="row">
-        @for (student of students; track student.studentNumber) {
-        <div class="col-md-6 col-lg-4 mb-3">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">{{ student.name }} {{ student.surname }}</h5>
-              <p class="card-text">
-                <strong>Nº Alumno:</strong> {{ student.studentNumber }}<br />
-                <strong>NIF:</strong> {{ student.nif }}<br />
-                <strong>Edad:</strong> {{ student.age }}<br />
-                <strong>Curso:</strong> {{ student.course }}
-              </p>
-              <button class="btn btn-primary" (click)="onStudentSelect(student.name)">
-                Ver detalle
-              </button>
-            </div>
-          </div>
-        </div>
-        } @empty {
-        <div class="col-12">
-          <div class="alert alert-info text-center">No hay alumnos registrados</div>
-        </div>
-        }
-      </div>
-    </div>
-  </body>
+</body>
 </html>

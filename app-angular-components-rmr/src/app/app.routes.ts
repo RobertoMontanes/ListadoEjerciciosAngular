@@ -5,5 +5,5 @@ import { StudentListComponent } from './student-list-component/student-list-comp
 export const routes: Routes = [
     {path: '', redirectTo: 'students', pathMatch: 'full' },
     {path: 'students', component: StudentListPage},
-    {path: 'students/add', component: StudentListComponent},
+    {path: 'students/add', component: StudentListComponent}
 ];
