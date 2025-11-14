@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input
+          type="email"
+          class="form-control"
+          id="nombre"
+          aria-describedby="nombreHelp"
+          formControlName="nombre"
+          placeholder="Enter nombre"
+        />
+      </div>
+      <div class="form-group">
+        <label for="edad">Edad</label>
+        <input
+          type="number"
+          class="form-control"
+          id="edad"
+          aria-describedby="edad-Help"
+          formControlName="edad"
+          placeholder="Enter edad"
+        />
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          type="number"
+          class="form-control"
+          id="telefono"
+          aria-describedby="telefonoHelp"
+          formControlName="telefono"
+          placeholder="Enter telefono"
+        />
+      </div>
+      <div class="form-group">
+        <label for="curso">Curso</label>
+        <input
+          type="text"
+          class="form-control"
+          id="curso"
+          formControlName="curso"
+          placeholder="curso 1º/2º DAM"
+        />
+      </div>
+
+      <button class="btn btn-primary w-100 py-2" type="submit">
+        <i class="bi bi-person-plus me-2"></i>Registrarse
+      </button>
+    </form>
+    
+  </body>
+</html>
