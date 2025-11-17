@@ -53,5 +53,3 @@ HTML (users.component.html)
 @if (users.length === 0) {
   <p>Cargando usuarios...</p>
 }
-
-cambio
