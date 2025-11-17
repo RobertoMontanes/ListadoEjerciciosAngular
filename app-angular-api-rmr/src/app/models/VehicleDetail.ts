@@ -1,11 +1,4 @@
-export interface VehiclesResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: Vehicle[];
-}
-
-export interface Vehicle {
+export interface VehicleDetail {
   name: string;
   model: string;
   manufacturer: string;
