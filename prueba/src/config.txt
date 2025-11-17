@@ -16,15 +16,7 @@ export class DataService {
 }
 
 
-Componente (users.component.ts)
 
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-
-@Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html'
-})
 export class UsersComponent implements OnInit {
   users: any[] = [];
 
