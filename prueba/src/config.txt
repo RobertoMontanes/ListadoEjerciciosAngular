@@ -1,0 +1,55 @@
+Servicio (data.service.ts)
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  constructor(private http: HttpClient) { }
+
+  getUsers() {
+    return this.http.get('https://jsonplaceholder.typicode.com/users');
+  }
+}
+
+
+Componente (users.component.ts)
+
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+
+@Component({
+  selector: 'app-users',
+  templateUrl: './users.component.html'
+})
+export class UsersComponent implements OnInit {
+  users: any[] = [];
+
+  constructor(private dataService: DataService) { }
+
+  ngOnInit() {
+    this.dataService.getUsers().subscribe((data: any) => {
+      this.users = data;
+    });
+  }
+}
+
+HTML (users.component.html)
+
+<h2>Lista de Usuarios</h2>
+
+@for (user of users; track user.id) {
+  <div>
+    <h3>{{ user.name }}</h3>
+    <p>Email: {{ user.email }}</p>
+    <p>Teléfono: {{ user.phone }}</p>
+    <br>
+  </div>
+}
+
+@if (users.length === 0) {
+  <p>Cargando usuarios...</p>
+}
