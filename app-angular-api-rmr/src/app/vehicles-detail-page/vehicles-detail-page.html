@@ -1,21 +1,20 @@
-<div class="container mt-4">
-  @if (loading) {
-  <div class="text-center">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Cargando...</span>
-    </div>
-  </div>
-  } @if (vehicle && !loading) {
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header bg-primary text-white">
-          <h2 class="mb-0">{{ vehicle.name }}</h2>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-              <h4>Información General</h4>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container mt-4">
+      @if (vehicle) {
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="mb-0">{{ vehicle.name }}</h2>
+            </div>
+            <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Modelo:</strong> {{ vehicle.model }}</li>
                 <li class="list-group-item">
@@ -30,12 +29,7 @@
                 <li class="list-group-item">
                   <strong>Longitud:</strong> {{ vehicle.length }} metros
                 </li>
-              </ul>
-            </div>
 
-            <div class="col-md-6">
-              <h4>Especificaciones Técnicas</h4>
-              <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   <strong>Velocidad Máxima:</strong> {{ vehicle.max_atmosphering_speed }} km/h
                 </li>
@@ -50,54 +44,24 @@
                   <strong>Consumibles:</strong> {{ vehicle.consumables }}
                 </li>
               </ul>
-            </div>
-          </div>
 
-          @if (vehicle.pilots.length > 0) {
-          <div class="row mt-4">
-            <div class="col-12">
-              <h4>Pilotos</h4>
-              <div class="d-flex flex-wrap gap-2">
-                @for (pilot of vehicle.pilots; track pilot) {
-                <span class="badge bg-secondary">{{ pilot }}</span>
-                }
-              </div>
-            </div>
-          </div>
-          } @if (vehicle.films.length > 0) {
-          <div class="row mt-4">
-            <div class="col-12">
-              <h4>Películas</h4>
-              <div class="d-flex flex-wrap gap-2">
-                @for (film of vehicle.films; track film) {
-                <span class="badge bg-info">{{ film }}</span>
-                }
-              </div>
-            </div>
-          </div>
-          }
-
-          <div class="row mt-4">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="mb-0">Información Adicional</h5>
-                </div>
-                <div class="card-body">
-                  <p><strong>Creado:</strong> {{ vehicle.created | date : 'medium' }}</p>
-                  <p><strong>Editado:</strong> {{ vehicle.edited | date : 'medium' }}</p>
+              @if (vehicle.pilots.length > 0) {
+              <div class="row mt-4">
+                <div class="col-12">
+                  <h4>Pilotos</h4>
+                  <div class="d-flex flex-wrap gap-2">
+                    @for (pilot of vehicle.pilots; track pilot) {
+                    <span class="badge bg-secondary">{{ pilot }}</span>
+                    }
+                  </div>
                 </div>
               </div>
+              }
             </div>
           </div>
-        </div>
-        <div class="card-footer">
-          <a routerLink="/vehicles" class="btn btn-secondary">Volver a la Lista</a>
         </div>
       </div>
+      }
     </div>
-  </div>
-  } @if (!vehicle && !loading) {
-  <div class="alert alert-danger" role="alert">No se pudo cargar la información del vehículo.</div>
-  }
-</div>
+  </body>
+</html>

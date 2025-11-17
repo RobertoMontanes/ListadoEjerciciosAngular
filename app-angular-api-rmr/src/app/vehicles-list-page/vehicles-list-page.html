@@ -7,27 +7,22 @@
   </head>
   <body>
     <div class="container mt-4">
-      <h2 class="mb-4">Lista de Vehículos</h2>
-
       <div class="row">
         @for (vehicle of vehicles; track vehicle.url) {
         <div class="col-md-4 mb-4">
           <div class="card h-100">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header">
               <h5 class="card-title mb-0">{{ vehicle.name }}</h5>
             </div>
             <div class="card-body">
               <p class="card-text"><strong>Modelo:</strong> {{ vehicle.model }}</p>
               <p class="card-text"><strong>Fabricante:</strong> {{ vehicle.manufacturer }}</p>
               <p class="card-text"><strong>Clase:</strong> {{ vehicle.vehicle_class }}</p>
-              <p class="card-text">
-                <strong>Precio:</strong> {{ vehicle.cost_in_credits }} créditos
-              </p>
             </div>
             <div class="card-footer">
               <a
                 [routerLink]="['/vehicles', getVehicleId(vehicle.url)]"
-                class="btn btn-primary btn-sm"
+                class=""
               >
                 Ver Detalles
               </a>
