@@ -12,10 +12,7 @@ export class Movidedb {
   constructor(private http: HttpClient) {}
 
   getPopularMovies(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.API_TOKEN}`
-    });
-
-    return this.http.get(`${this.API_URL}/movie/popular`, { headers });
+    const headers = { Authorization: `Bearer ${this.API_TOKEN}` };
+    return this.http.get(this.API_URL + '/api/', { headers: headers });
   }
 }
