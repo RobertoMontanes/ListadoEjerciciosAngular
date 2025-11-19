@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MovieResponse } from '../interface/moviedb.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +11,13 @@ export class Movidedb {
   private API_URL = 'https://api.themoviedb.org/3';
 
   constructor(private http: HttpClient) {}
-
-  getPopularMovies(): Observable<any> {
+  
+  getPopularMovies(): Observable<MovieResponse> {
     const headers = { Authorization: `Bearer ${this.API_TOKEN}` };
-    return this.http.get(this.API_URL + '/api/', { headers: headers });
+    return this.http.get<MovieResponse>(this.API_URL + '/api/', { headers: headers });
   }
-}
+  
+  
+  }
+
+
