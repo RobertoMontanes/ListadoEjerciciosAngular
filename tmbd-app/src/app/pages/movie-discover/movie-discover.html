@@ -1,0 +1,75 @@
+<div class="discover-container">
+  <div class="filters-section">
+    <h1>Descubre contenido</h1>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label for="mediaType">Tipo de contenido:</label>
+        <select
+          id="mediaType"
+          [(ngModel)]="mediaType"
+          (change)="onMediaTypeChange()"
+          class="select-input">
+          <option value="movie">Películas</option>
+          <option value="tv">Series de TV</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="genre">Género:</label>
+        <select
+          id="genre"
+          [(ngModel)]="selectedGenreId"
+          (change)="onGenreChange()"
+          class="select-input"
+          [disabled]="genres.length === 0">
+          <option [ngValue]="null">Selecciona un género</option>
+          @for (genre of genres; track genre.id) {
+            <option [ngValue]="genre.id">{{ genre.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  @if (loading) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Cargando...</p>
+    </div>
+  }
+
+  @if (!loading && results.length > 0) {
+    <div class="results-grid">
+      @for (item of results; track item.id) {
+        <div class="movie-card">
+          <div class="poster-container">
+            @if (item.poster_path) {
+              <img
+                [src]="imageBaseUrl + item.poster_path"
+                [alt]="getTitle(item)"
+                class="poster">
+            } @else {
+              <div class="no-poster">
+                <span>🎬</span>
+              </div>
+            }
+            <div class="rating">
+              ⭐ {{ item.vote_average.toFixed(1) }}
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-title">{{ getTitle(item) }}</h3>
+            <p class="movie-overview">{{ item.overview || 'Sin descripción disponible' }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (!loading && results.length === 0 && selectedGenreId) {
+    <div class="no-results">
+      <p>No se encontraron resultados para este género.</p>
+    </div>
+  }
+</div>
