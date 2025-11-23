@@ -1,0 +1,10 @@
+<div class="person-detail">
+  <div *ngIf="loading">Cargando...</div>
+  <div *ngIf="!loading && person">
+    <h2>{{ person.name }}</h2>
+    <img *ngIf="person.profile_path" [src]="imageBase + person.profile_path" alt="{{ person.name }}" />
+    <p><strong>Biografía:</strong></p>
+    <p *ngIf="person.biography">{{ person.biography }}</p>
+    <p *ngIf="!person.biography">No hay biografía disponible.</p>
+  </div>
+</div>

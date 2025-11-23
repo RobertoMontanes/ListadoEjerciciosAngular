@@ -7,7 +7,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const clonedRequest = req.clone({
       setParams: {
         api_key: API_KEY,
-        language: 'es-ES'
+      },
+      setHeaders: {
+        Authorization: `Bearer ${API_KEY}`
       }
     });
     return next(clonedRequest);

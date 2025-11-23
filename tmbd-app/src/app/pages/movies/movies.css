@@ -1,0 +1,6 @@
+.movies-container { padding: 1rem; }
+.controls { margin-bottom: 1rem; }
+.results-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap: 1rem; }
+.movie-card { background: #fafafa; padding: 0.5rem; border-radius: 6px; text-align:center }
+.movie-card img { width: 100%; height: auto; border-radius: 4px; }
+.movie-card .title { margin-top: 0.5rem; font-weight: 600; }

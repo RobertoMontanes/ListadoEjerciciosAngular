@@ -9,7 +9,8 @@
           id="mediaType"
           [(ngModel)]="mediaType"
           (change)="onMediaTypeChange()"
-          class="select-input">
+          class="select-input"
+        >
           <option value="movie">Películas</option>
           <option value="tv">Series de TV</option>
         </select>
@@ -22,54 +23,38 @@
           [(ngModel)]="selectedGenreId"
           (change)="onGenreChange()"
           class="select-input"
-          [disabled]="genres.length === 0">
+          [disabled]="genres.length === 0"
+        >
           <option [ngValue]="null">Selecciona un género</option>
-          @for (genre of genres; track genre.id) {
-            <option [ngValue]="genre.id">{{ genre.name }}</option>
-          }
+          <option *ngFor="let genre of genres" [ngValue]="genre.id">{{ genre.name }}</option>
         </select>
       </div>
     </div>
   </div>
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+  </div>
 
-  @if (loading) {
-    <div class="loading">
-      <div class="spinner"></div>
-      <p>Cargando...</p>
+  <div *ngIf="!loading && results.length > 0" class="results-grid">
+    <div *ngFor="let item of results" class="movie-card">
+      <div class="poster-container">
+        <ng-container *ngIf="item.poster_path; else noPoster">
+          <img [src]="imageBaseUrl + item.poster_path" [alt]="getTitle(item)" class="poster" />
+        </ng-container>
+        <ng-template #noPoster>
+          <div class="no-poster"><span>🎬</span></div>
+        </ng-template>
+        <div class="rating">⭐ {{ item.vote_average.toFixed(1) }}</div>
+      </div>
+      <div class="movie-info">
+        <h3 class="movie-title">{{ getTitle(item) }}</h3>
+        <p class="movie-overview">{{ item.overview || 'Sin descripción disponible' }}</p>
+      </div>
     </div>
-  }
+  </div>
 
-  @if (!loading && results.length > 0) {
-    <div class="results-grid">
-      @for (item of results; track item.id) {
-        <div class="movie-card">
-          <div class="poster-container">
-            @if (item.poster_path) {
-              <img
-                [src]="imageBaseUrl + item.poster_path"
-                [alt]="getTitle(item)"
-                class="poster">
-            } @else {
-              <div class="no-poster">
-                <span>🎬</span>
-              </div>
-            }
-            <div class="rating">
-              ⭐ {{ item.vote_average.toFixed(1) }}
-            </div>
-          </div>
-          <div class="movie-info">
-            <h3 class="movie-title">{{ getTitle(item) }}</h3>
-            <p class="movie-overview">{{ item.overview || 'Sin descripción disponible' }}</p>
-          </div>
-        </div>
-      }
-    </div>
-  }
-
-  @if (!loading && results.length === 0 && selectedGenreId) {
-    <div class="no-results">
-      <p>No se encontraron resultados para este género.</p>
-    </div>
-  }
+  <div *ngIf="!loading && results.length === 0 && selectedGenreId" class="no-results">
+    <p>No se encontraron resultados para este género.</p>
+  </div>
 </div>

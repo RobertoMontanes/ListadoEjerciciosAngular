@@ -1,0 +1,23 @@
+<div class="movies-container">
+  <h2>Movies</h2>
+
+  <div class="controls">
+    <label>Category:</label>
+    <select [(ngModel)]="category" (change)="onCategoryChange()">
+      <option value="popular">Popular</option>
+      <option value="top_rated">Top Rated</option>
+      <option value="upcoming">Upcoming</option>
+    </select>
+  </div>
+
+  <div *ngIf="loading" class="loading">Cargando...</div>
+
+  <div class="results-grid">
+    <div *ngFor="let item of results" class="movie-card">
+      <a [routerLink]="['/movies', item.id]">
+        <img *ngIf="item.poster_path" [src]="imageBaseUrl + item.poster_path" alt="{{ getTitle(item) }}" />
+        <div class="title">{{ getTitle(item) }}</div>
+      </a>
+    </div>
+  </div>
+</div>

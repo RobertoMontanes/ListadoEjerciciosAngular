@@ -1,0 +1,12 @@
+<div class="people-container">
+  <h2>People (Actores populares)</h2>
+  <div *ngIf="loading">Cargando...</div>
+  <div class="people-grid">
+    <div *ngFor="let person of results" class="person-card">
+      <a [routerLink]="['/people', person.id]">
+        <img *ngIf="person.profile_path" [src]="imageBase + person.profile_path" alt="{{ person.name }}" />
+        <div class="name">{{ person.name }}</div>
+      </a>
+    </div>
+  </div>
+</div>

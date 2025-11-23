@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { GenresService } from '../../services/genres.service';
 import { DiscoverService } from '../../services/discover.service';
 import { Genre } from '../../models/genre.interface';
 import { Movie } from '../../models/movie.interface';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-discover',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './movie-discover.html',
   styleUrls: ['./movie-discover.css'],
-  imports: [FormsModule],
 })
 export class MovieDiscoverComponent implements OnInit {
   mediaType: 'movie' | 'tv' = 'movie';
@@ -80,6 +82,4 @@ export class MovieDiscoverComponent implements OnInit {
   getTitle(item: Movie): string {
     return item.title || item.name || 'Sin título';
   }
-
-
 }

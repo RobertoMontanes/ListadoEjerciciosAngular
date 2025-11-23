@@ -1,0 +1,10 @@
+<div class="movie-detail">
+  <div *ngIf="loading">Cargando...</div>
+  <div *ngIf="!loading && movie">
+    <h2>{{ movie.title || movie.name }}</h2>
+    <img *ngIf="movie.poster_path" [src]="imageBase + movie.poster_path" alt="{{ movie.title }}" />
+    <p>{{ movie.overview }}</p>
+    <p><strong>Estreno:</strong> {{ movie.release_date || movie.first_air_date }}</p>
+    <p><strong>Valoración:</strong> {{ movie.vote_average }}</p>
+  </div>
+</div>
