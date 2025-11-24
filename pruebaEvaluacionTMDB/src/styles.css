@@ -1,0 +1,15 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+	color-scheme: dark;
+}
+
+body {
+	background-color: #020617;
+	font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	color: #e2e8f0;
+}
+
+section {
+	width: 100%;
+}
