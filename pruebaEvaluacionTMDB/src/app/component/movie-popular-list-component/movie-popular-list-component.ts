@@ -1,15 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
-const BASE_URL = 'https://api.themoviedb.org/3/movie/popular';
+import { MovieList } from '../../model/movie-popular-list.interface';
+import { MovieService } from '../../service/movie-service';
 
 @Component({
-  selector: 'app-movie-popular-list-component',
-  imports: [],
+  selector: 'app-movie-popular-list',
+  imports: [CommonModule],
   templateUrl: './movie-popular-list-component.html',
   styleUrl: './movie-popular-list-component.css',
 })
 export class MoviePopularListComponent implements OnInit {
-  ngOnInit(): void {
-    
-  }
+  movies: MovieList[] = [];
+  visibleMovies: MovieList[] = [];
+
+  posterBaseUrl = 'https://image.tmdb.org/t/p/w300';
+
+  constructor(private readonly movieService: MovieService) {}
+
+  ngOnInit(): void {}
 }

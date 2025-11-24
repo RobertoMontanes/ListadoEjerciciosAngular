@@ -1,9 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
-</html>
+<section class="hero">
+  <div class="container text-center py-5">
+    <p class="hero__eyebrow">Explora TMDB</p>
+  </div>
+</section>
+
+<section class="container py-4">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <label for="peopleSelect" class="form-label">Actores a mostrar</label>
+      <select id="peopleSelect" class="form-select" [(ngModel)]="peopleSelection">
+        @for (option of options; track option) {
+        <option [value]="option">{{ option === 'all' ? 'All' : option }}</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="movieSelect" class="form-label">Películas a mostrar</label>
+      <select id="movieSelect" class="form-select" [(ngModel)]="movieSelection">
+        @for (option of options; track option) {
+        <option [value]="option">{{ option === 'all' ? 'All' : option }}</option>
+        }
+      </select>
+    </div>
+  </div>
+</section>
+

@@ -1,22 +1,28 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MoviePopularListResponse } from '../model/movie-popular-list.interface';
+import { MovieDetail } from '../model/movie-detail.interface';
+import { MovieVideosResponse } from '../model/movie-video.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
-  private readonly endpoint = 'https://api.themoviedb.org/3/movie/popular';
+  private popular = 'https://api.themoviedb.org/3/movie/popular';
+  private movie = 'https://api.themoviedb.org/3/movie';
 
   constructor(private http: HttpClient) {}
 
-  public getMovieList(page = 1, language = 'es-ES'): Observable<MoviePopularListResponse> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('language', language)
-      .set('region', 'ES');
+  public getMovieList(): Observable<MoviePopularListResponse> {
+    return this.http.get<MoviePopularListResponse>(this.popular);
+  }
 
-    return this.http.get<MoviePopularListResponse>(this.endpoint, { params });
+  public getMovieDetail(movieId: number): Observable<MovieDetail> {
+    return this.http.get<MovieDetail>(`${this.movie}/${movieId}`);
+  }
+
+  public getMovieVideos(movieId: number): Observable<MovieVideosResponse> {
+    return this.http.get<MovieVideosResponse>(`${this.movie}/${movieId}/videos`);
   }
 }
